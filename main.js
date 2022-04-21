@@ -11,7 +11,7 @@ const loader = new STLLoader()
 var piece1;
 
 loader.load(
-    'assets/piece1.stl',
+    '3d-assets/piece1.stl',
     function (geometry) {
         piece1 = new THREE.Mesh(geometry, piece1mat)
         piece1.position.set(0,0,0);
