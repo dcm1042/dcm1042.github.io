@@ -40,6 +40,7 @@ loader.load(
 		scene.add(piece1);
     } 
 );
+//can automate this now TODO
 var piece2 = new THREE.Mesh();
 loader.load(
     '3d-assets/piece3.stl',
