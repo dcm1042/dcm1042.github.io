@@ -2,6 +2,7 @@ import './style.css'
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { STLLoader } from 'three/examples/jsm/loaders/STLLoader'
+import { Vector3 } from 'three';
 
 
 const scene = new THREE.Scene();
@@ -54,7 +55,10 @@ loader.load(
 		scene.add(piece2);
     } 
 );
-var rotation = {piece1:new THREE.Vector3(Math.random()/100,Math.random()/100,0),piece2:new THREE.Vector3(Math.random()/100,Math.random()/100,Math.random()/100)}
+function randV3(){
+	return new Vector3(Math.random()/300-(.006*(((parseInt(Math.random()*10)))%2)),Math.random()/300-(.006*(((parseInt(Math.random()*10)))%2)),Math.random()/300-(.006*(((parseInt(Math.random()*10)))%2)));
+}
+var rotation = {piece1:randV3(), piece2:randV3()};
 const light = new THREE.PointLight(0x999999);
 light.position.set(25,5,100);
 
