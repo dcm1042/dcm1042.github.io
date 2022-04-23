@@ -8,18 +8,32 @@ const scene = new THREE.Scene();
 
 const piece1mat = new THREE.MeshStandardMaterial({color: 0xFFF21F });
 const loader = new STLLoader()
-var piece1;
+var piece1 = new THREE.Mesh();
 
+function getCenterPoint(mesh) {
+  var geometry = mesh.geometry;
+  geometry.computeBoundingBox();
+  var center = new THREE.Vector3();
+  geometry.boundingBox.getCenter( center );
+  mesh.localToWorld( center );
+  return center;
+}
+var pivot = new THREE.Group();
 loader.load(
     '3d-assets/piece1.stl',
     function (geometry) {
-        piece1 = new THREE.Mesh(geometry, piece1mat)
-        piece1.position.set(0,0,0);
+        
+        
+        piece1 = new THREE.Mesh(geometry.center(), piece1mat);
+       
         piece1.scale.x = 3.5; // SCALE
         piece1.scale.y = 3.5; // SCALE
         piece1.scale.z = 3.5;
-        scene.add(piece1)
-    }
+        piece1.position.set(4,0,4);
+        
+        scene.add(piece1);
+       // scene.add(pivot);
+    } 
 );
 
 
@@ -79,7 +93,9 @@ function onWindowResize() {
 
 function animate(){
   requestAnimationFrame( animate );
-
+  piece1.rotation.y += 0.01
+  
+  piece1.rotation.z += 0.01
   renderer.render(scene,camera);
 }
 
