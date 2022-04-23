@@ -1,38 +1,25 @@
 import './style.css'
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
-
 import { STLLoader } from 'three/examples/jsm/loaders/STLLoader'
 
 const scene = new THREE.Scene();
 
-const piece1mat = new THREE.MeshStandardMaterial({color: 0xFFF21F });
-const loader = new STLLoader()
+const piece1mat = new THREE.MeshStandardMaterial({color: 0x30F240 });
+const loader = new STLLoader();
 var piece1 = new THREE.Mesh();
 
-function getCenterPoint(mesh) {
-  var geometry = mesh.geometry;
-  geometry.computeBoundingBox();
-  var center = new THREE.Vector3();
-  geometry.boundingBox.getCenter( center );
-  mesh.localToWorld( center );
-  return center;
-}
-var pivot = new THREE.Group();
+
 loader.load(
     '3d-assets/piece1.stl',
     function (geometry) {
-        
-        
         piece1 = new THREE.Mesh(geometry.center(), piece1mat);
-       
         piece1.scale.x = 3.5; // SCALE
         piece1.scale.y = 3.5; // SCALE
         piece1.scale.z = 3.5;
-        piece1.position.set(4,0,4);
+        piece1.position.set(-10,10,-5);
         
         scene.add(piece1);
-       // scene.add(pivot);
     } 
 );
 
@@ -50,10 +37,10 @@ renderer.render(scene, camera);
 
 
 
-const light = new THREE.PointLight(0xFF0FFF);
+const light = new THREE.PointLight(0x999999);
 light.position.set(25,5,100);
 
-const light2 = new THREE.AmbientLight(0xFFFFFF);
+const light2 = new THREE.AmbientLight(0x333333);
 
 
 const helper = new THREE.PointLightHelper(light);
