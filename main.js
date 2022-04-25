@@ -34,9 +34,9 @@ renderer.render(scene, camera);
 var piece1 = new THREE.Mesh();
 var piecelist = {piece1:['3d-assets/piece1.stl', piece1mat, 3.5, 10,10 ,Math.floor(Math.random() * 12)], 
                         piece2:['3d-assets/piece3.stl', piece2mat, 3.5, -10, -10,Math.floor(Math.random() * 12)],
-                        piece3:['3d-assets/piece5.stl', piece3mat, 3.5, -10, -25,Math.floor(Math.random() * 12)],
-                        piece4:['3d-assets/piece6.stl', piece4mat, 3.5, 0, -142,Math.floor(Math.random() * 12)],
-                        piece5:['3d-assets/piece3.stl', piece5mat, 3.5, 10, -75,Math.floor(Math.random() * 12)]}
+                        piece3:['3d-assets/piece5.stl', piece3mat, 3.5, -10, -55,Math.floor(Math.random() * 12)],
+                        piece4:['3d-assets/piece6.stl', piece4mat, 3.5, 0, -122,Math.floor(Math.random() * 12)],
+                        piece5:['3d-assets/piece3.stl', piece5mat, 3.5, 10, -95,Math.floor(Math.random() * 12)]}
 for (let model in piecelist){
       loader.load(
         piecelist[model][0],
@@ -65,11 +65,11 @@ const light2 = new THREE.AmbientLight(0x333333);
 
 const helper = new THREE.PointLightHelper(light);
 function addStar(){
-		const sphere = new THREE.SphereGeometry(0.40,24,24);
+		const sphere = new THREE.SphereGeometry(0.45,24,24);
 		const material5 = new THREE.MeshStandardMaterial( {color:0xffffff} );
 		const star = new THREE.Mesh(sphere, material5);
 		const [x,y,z] = Array(3).fill().map( () => THREE.MathUtils.randFloatSpread(100) );
-		star.position.set(x*3.5,y*10.5,z-120);
+		star.position.set(x*3.5,y*10.5,(z)-130);
 		scene.add(star);
 
 }
