@@ -72,11 +72,11 @@ const light2 = new THREE.AmbientLight(0x333333);
 
 const helper = new THREE.PointLightHelper(light);
 function addStar(){
-		const sphere = new THREE.SphereGeometry(0.45,24,24);
+		const sphere = new THREE.SphereGeometry(0.58,24,24);
 		const material5 = new THREE.MeshStandardMaterial( {color:0xffffff} );
 		const star = new THREE.Mesh(sphere, material5);
 		const [x,y,z] = Array(3).fill().map( () => THREE.MathUtils.randFloatSpread(100) );
-		star.position.set(x*3.5,y*10.5,(z)-130);
+		star.position.set(x*5,y*10.5,(-z*2.5)-200);
 		scene.add(star);
 
 }
