@@ -9,6 +9,9 @@ const scene = new THREE.Scene();
 
 var piece1mat = new THREE.MeshStandardMaterial({color: 0x30F240 });
 var piece2mat = new THREE.MeshStandardMaterial({color: 0x3002F0 });
+var piece3mat = new THREE.MeshStandardMaterial({color: 0x30F2F0 });
+var piece4mat = new THREE.MeshStandardMaterial({color: 0xFFFF00 });
+var piece5mat = new THREE.MeshStandardMaterial({color: 0xFF8F00 });
 
 var loader = new STLLoader();
 
@@ -29,36 +32,31 @@ camera.position.setZ(30);
 renderer.render(scene, camera);
 
 var piece1 = new THREE.Mesh();
-loader.load(
-    '3d-assets/piece1.stl',
-    function (geometry) {
-        var piece1 = new THREE.Mesh(geometry.center(), piece1mat);
-        piece1.scale.x = 3.5; // SCALE
-        piece1.scale.y = 3.5; // SCALE
-        piece1.scale.z = 3.5;
-        piece1.position.set(-5,0,0);
-		piece1.name = "piece1";
-		scene.add(piece1);
-    } 
-);
-//can automate this now TODO
-var piece2 = new THREE.Mesh();
-loader.load(
-    '3d-assets/piece3.stl',
-    function (geometry) {
-        piece2 = new THREE.Mesh(geometry.center(), piece2mat);
-        piece2.scale.x = 3.5; // SCALE
-        piece2.scale.y = 3.5; // SCALE
-        piece2.scale.z = 3.5;
-        piece2.position.set(9,0,0);
-		piece2.name = "piece2";
-		scene.add(piece2);
-    } 
-);
+var piecelist = {piece1:['3d-assets/piece1.stl', piece1mat, 3.5, 10,10 ,5], 
+                        piece2:['3d-assets/piece3.stl', piece2mat, 3.5, -10, 10,5],
+                        piece3:['3d-assets/piece5.stl', piece3mat, 3.5, -10, -5,5],
+                        piece4:['3d-assets/piece6.stl', piece4mat, 3.5, 0, -12,5],
+                        piece5:['3d-assets/piece3.stl', piece5mat, 3.5, 10, -5,5]}
+for (let model in piecelist){
+      loader.load(
+        piecelist[model][0],
+        function (geometry) {
+            var piece = new THREE.Mesh(geometry.center(), piecelist[model][1]);
+            piece.scale.x = piecelist[model][2]; // SCALE
+            piece.scale.y = piecelist[model][2]; // SCALE
+            piece.scale.z = piecelist[model][2];
+            piece.position.set(piecelist[model][3],piecelist[model][4],piecelist[model][5]);
+            piece.name = model;
+            scene.add(piece);
+        } 
+    );
+}
+
 function randV3(){
 	return new Vector3(Math.random()/300-(.006*(((parseInt(Math.random()*10)))%2)),Math.random()/300-(.006*(((parseInt(Math.random()*10)))%2)),Math.random()/300-(.006*(((parseInt(Math.random()*10)))%2)));
 }
-var rotation = {piece1:randV3(), piece2:randV3()};
+
+var rotation = {piece1:randV3(), piece2:randV3(), piece3:randV3(),piece4:randV3(),piece5:randV3()};
 const light = new THREE.PointLight(0x999999);
 light.position.set(25,5,100);
 
@@ -103,8 +101,7 @@ function animate(){
   requestAnimationFrame( animate );
   //pieceone.rotation.z += 0.01
   for(let p in rotation){
-	let apple = scene.getObjectByName(p)
-
+	let apple = scene.getObjectByName(p);
 	 apple.rotation.x += rotation[p].x;
 	 apple.rotation.y += rotation[p].y;
 	 apple.rotation.z += rotation[p].z;
