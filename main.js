@@ -36,11 +36,14 @@ renderer.render(scene, camera);
 var piece1 = new THREE.Mesh();
 var piecelist = {piece1:['3d-assets/piece1.stl', piece1mat, 3.5, 10,10 ,Math.floor(Math.random() * 12)], 
                         piece2:['3d-assets/piece3.stl', piece2mat, 3.5, -10, -10,Math.floor(Math.random() * 12)],
-                        piece3:['3d-assets/piece5.stl', piece3mat, 3.5, -10, -55,Math.floor(Math.random() * 12)],
-                        piece4:['3d-assets/piece6.stl', piece4mat, 3.5, 0, -122,Math.floor(Math.random() * 12)],
+                        piece3:['3d-assets/piece5.stl', piece3mat, 3.5, -14, -55,Math.floor(Math.random() * 12)],
+                        piece4:['3d-assets/piece6.stl', piece4mat, 3.5, 17, -122,Math.floor(Math.random() * 12)],
                         piece5:['3d-assets/piece3.stl', piece5mat, 3.5, 10, -95,Math.floor(Math.random() * 12)],
                         piece6:['3d-assets/scad_chess_pawn.stl', chessblack, 0.2, -10, -105,Math.floor(Math.random() * 12)],
-                        piece7:['3d-assets/scad_chess_pawn.stl', chesswhite, 0.2, 10, -30,Math.floor(Math.random() * 12)]}
+                        piece7:['3d-assets/scad_chess_pawn.stl', chesswhite, 0.2,15, -30,Math.floor(Math.random() * 12)],
+                        piece8:['3d-assets/scad_chess_knight.stl', chessblack, 0.2, -5, -45,Math.floor(Math.random() * 12)],
+                        piece9:['3d-assets/scad_chess_king.stl', chesswhite, 0.2, -13, -120,Math.floor(Math.random() * 12)],
+                        piece9:['3d-assets/scad_chess_queen.stl', chesswhite, 0.2, 10, -75,Math.floor(Math.random() * 12)]}
 for (let model in piecelist){
       loader.load(
         piecelist[model][0],
@@ -60,7 +63,7 @@ function randV3(){
 	return new Vector3(Math.random()/300-(.006*(((parseInt(Math.random()*10)))%2)),Math.random()/300-(.006*(((parseInt(Math.random()*10)))%2)),Math.random()/300-(.006*(((parseInt(Math.random()*10)))%2)));
 }
 
-var rotation = {piece1:randV3(), piece2:randV3(), piece3:randV3(),piece4:randV3(),piece5:randV3(),piece6:randV3(),piece7:randV3()};
+var rotation = {piece1:randV3(), piece2:randV3(), piece3:randV3(),piece4:randV3(),piece5:randV3(),piece6:randV3(),piece7:randV3(),piece8:randV3(),piece9:randV3()};
 const light = new THREE.PointLight(0x999999);
 light.position.set(25,5,100);
 
