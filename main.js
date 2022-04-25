@@ -12,6 +12,8 @@ var piece2mat = new THREE.MeshStandardMaterial({color: 0x3002F0 });
 var piece3mat = new THREE.MeshStandardMaterial({color: 0x30F2F0 });
 var piece4mat = new THREE.MeshStandardMaterial({color: 0xFFFF00 });
 var piece5mat = new THREE.MeshStandardMaterial({color: 0xFF8F00 });
+var chesswhite = new THREE.MeshStandardMaterial({color: 0xFFFFFF});
+var chessblack = new THREE.MeshStandardMaterial({color: 0x444444});
 
 var loader = new STLLoader();
 
@@ -36,7 +38,9 @@ var piecelist = {piece1:['3d-assets/piece1.stl', piece1mat, 3.5, 10,10 ,Math.flo
                         piece2:['3d-assets/piece3.stl', piece2mat, 3.5, -10, -10,Math.floor(Math.random() * 12)],
                         piece3:['3d-assets/piece5.stl', piece3mat, 3.5, -10, -55,Math.floor(Math.random() * 12)],
                         piece4:['3d-assets/piece6.stl', piece4mat, 3.5, 0, -122,Math.floor(Math.random() * 12)],
-                        piece5:['3d-assets/piece3.stl', piece5mat, 3.5, 10, -95,Math.floor(Math.random() * 12)]}
+                        piece5:['3d-assets/piece3.stl', piece5mat, 3.5, 10, -95,Math.floor(Math.random() * 12)],
+                        piece6:['3d-assets/scad_chess_pawn.stl', chessblack, 0.2, -10, -105,Math.floor(Math.random() * 12)],
+                        piece7:['3d-assets/scad_chess_pawn.stl', chesswhite, 0.2, 10, -30,Math.floor(Math.random() * 12)]}
 for (let model in piecelist){
       loader.load(
         piecelist[model][0],
@@ -56,7 +60,7 @@ function randV3(){
 	return new Vector3(Math.random()/300-(.006*(((parseInt(Math.random()*10)))%2)),Math.random()/300-(.006*(((parseInt(Math.random()*10)))%2)),Math.random()/300-(.006*(((parseInt(Math.random()*10)))%2)));
 }
 
-var rotation = {piece1:randV3(), piece2:randV3(), piece3:randV3(),piece4:randV3(),piece5:randV3()};
+var rotation = {piece1:randV3(), piece2:randV3(), piece3:randV3(),piece4:randV3(),piece5:randV3(),piece6:randV3(),piece7:randV3()};
 const light = new THREE.PointLight(0x999999);
 light.position.set(25,5,100);
 
@@ -73,7 +77,7 @@ function addStar(){
 		scene.add(star);
 
 }
-Array(3900).fill().forEach(addStar);
+Array(2500).fill().forEach(addStar);
 
 
 renderer.render(scene,camera);
