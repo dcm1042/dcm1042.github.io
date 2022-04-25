@@ -32,11 +32,11 @@ camera.position.setZ(30);
 renderer.render(scene, camera);
 
 var piece1 = new THREE.Mesh();
-var piecelist = {piece1:['3d-assets/piece1.stl', piece1mat, 3.5, 10,10 ,5], 
-                        piece2:['3d-assets/piece3.stl', piece2mat, 3.5, -10, 10,5],
-                        piece3:['3d-assets/piece5.stl', piece3mat, 3.5, -10, -5,5],
-                        piece4:['3d-assets/piece6.stl', piece4mat, 3.5, 0, -12,5],
-                        piece5:['3d-assets/piece3.stl', piece5mat, 3.5, 10, -5,5]}
+var piecelist = {piece1:['3d-assets/piece1.stl', piece1mat, 3.5, 10,10 ,Math.floor(Math.random() * 12)], 
+                        piece2:['3d-assets/piece3.stl', piece2mat, 3.5, -10, -10,Math.floor(Math.random() * 12)],
+                        piece3:['3d-assets/piece5.stl', piece3mat, 3.5, -10, -25,Math.floor(Math.random() * 12)],
+                        piece4:['3d-assets/piece6.stl', piece4mat, 3.5, 0, -42,Math.floor(Math.random() * 12)],
+                        piece5:['3d-assets/piece3.stl', piece5mat, 3.5, 10, -35,Math.floor(Math.random() * 12)]}
 for (let model in piecelist){
       loader.load(
         piecelist[model][0],
@@ -69,11 +69,11 @@ function addStar(){
 		const material5 = new THREE.MeshStandardMaterial( {color:0xffffff} );
 		const star = new THREE.Mesh(sphere, material5);
 		const [x,y,z] = Array(3).fill().map( () => THREE.MathUtils.randFloatSpread(100) );
-		star.position.set(x*3.5,y*2.5,z-120);
+		star.position.set(x*3.5,y*10.5,z-120);
 		scene.add(star);
 
 }
-Array(700).fill().forEach(addStar);
+Array(3900).fill().forEach(addStar);
 
 
 renderer.render(scene,camera);
@@ -95,8 +95,15 @@ function onWindowResize() {
 }
 
 
+function scrollAnimation(){
+  const pos = document.body.getBoundingClientRect().top;
+ // camera.position.x+=Math.sin(camera.rotationy)*3;
+  //camera.position.z =pos*0.04 +30;
+  camera.position.y =pos*0.04;
 
 
+}
+document.body.onscroll = scrollAnimation
 function animate(){
   requestAnimationFrame( animate );
   //pieceone.rotation.z += 0.01
