@@ -35,8 +35,8 @@ var piece1 = new THREE.Mesh();
 var piecelist = {piece1:['3d-assets/piece1.stl', piece1mat, 3.5, 10,10 ,Math.floor(Math.random() * 12)], 
                         piece2:['3d-assets/piece3.stl', piece2mat, 3.5, -10, -10,Math.floor(Math.random() * 12)],
                         piece3:['3d-assets/piece5.stl', piece3mat, 3.5, -10, -25,Math.floor(Math.random() * 12)],
-                        piece4:['3d-assets/piece6.stl', piece4mat, 3.5, 0, -42,Math.floor(Math.random() * 12)],
-                        piece5:['3d-assets/piece3.stl', piece5mat, 3.5, 10, -35,Math.floor(Math.random() * 12)]}
+                        piece4:['3d-assets/piece6.stl', piece4mat, 3.5, 0, -142,Math.floor(Math.random() * 12)],
+                        piece5:['3d-assets/piece3.stl', piece5mat, 3.5, 10, -75,Math.floor(Math.random() * 12)]}
 for (let model in piecelist){
       loader.load(
         piecelist[model][0],
