@@ -65,7 +65,7 @@ const light2 = new THREE.AmbientLight(0x333333);
 
 const helper = new THREE.PointLightHelper(light);
 function addStar(){
-		const sphere = new THREE.SphereGeometry(0.35,24,24);
+		const sphere = new THREE.SphereGeometry(0.40,24,24);
 		const material5 = new THREE.MeshStandardMaterial( {color:0xffffff} );
 		const star = new THREE.Mesh(sphere, material5);
 		const [x,y,z] = Array(3).fill().map( () => THREE.MathUtils.randFloatSpread(100) );
@@ -73,7 +73,7 @@ function addStar(){
 		scene.add(star);
 
 }
-Array(300).fill().forEach(addStar);
+Array(700).fill().forEach(addStar);
 
 
 renderer.render(scene,camera);
