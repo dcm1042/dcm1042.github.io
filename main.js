@@ -76,7 +76,7 @@ function addStar(){
 		const material5 = new THREE.MeshStandardMaterial( {color:0xffffff} );
 		const star = new THREE.Mesh(sphere, material5);
 		const [x,y,z] = Array(3).fill().map( () => THREE.MathUtils.randFloatSpread(100) );
-		star.position.set(x*5,y*10.5,(-z*2.5)-200);
+		star.position.set(x*5,y*10.5,(-z*1.5)-170);
 		scene.add(star);
 
 }
